@@ -1,13 +1,71 @@
 ﻿<!DOCTYPE html>
-<html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta charset="utf-8" />
-    <title>RescoD365Saturday</title>
-    <link href="css/default.css" rel="stylesheet" />
+
+    <title></title>
+
+
+    <meta charset="utf-8″    />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <meta name="viewport" content="initial-scale=1, user-scalable=no" />
+
+    <script type="text/javascript" src="JSBridge.js"></script>
+    <script type="text/javascript" src="BookSessionsJS/BookSessions.js"></script>
+
+    <script type="text/javascript">
+
+        function onLoad() {
+            var functionName = "Salvar auto";
+
+            try {
+
+                MobileCRM.UI.EntityForm.onCommand("custom_Actualizar",
+
+                    function (entityForm) {
+                        if (entityForm)
+
+                            MobileCRM.UI.EntityForm.save();
+
+                    }
+
+                );
+
+                MobileCRM.UI.EntityForm.onCommand("custom_Refresh",
+
+                    function (entityForm) {
+                        if (entityForm)
+
+                            MobileCRM.UI.EntityForm.refreshForm();
+                    }
+
+                );
+                MobileCRM.UI.EntityForm.onCommand("custom_MyTrack",
+
+                    function (entityForm) {
+                        if (entityForm)
+                            mySessions.onClickBooking(mySessions.entityForm.entity.properties["my_sessionid"]);
+                    }
+
+                );
+            }
+
+            catch (e) {
+
+                throw new MobileCrmException(functionName + e.message);
+
+            }
+
+        }
+
+    </script>
+
 </head>
-<body>
-    <div>Aquí se debe incluir el contenido.</div>
-    <script src="js/main.js"></script>
+
+<body onload="onLoad();">
 </body>
+
 </html>
